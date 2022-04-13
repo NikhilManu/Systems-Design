@@ -1,0 +1,24 @@
+Lets assume we have a code running on our server and many requests are coming and server cant handle these many connections
+
+Scalability: Scalability is the property of a system to handle a growing amount of work by adding resources to the system.
+
+Here we can do two things to improve our scalability.
+
+    => Buy a Bigger Machine  --> Vertical Scaling 
+    => Buy more Machine  --> Horizontal Scaling
+
+
+Horizontal Scaling              |   Vertical Scaling
+--------------------------------------------------------------------
+Load Balancing Required         |   N/A
+
+if one of machine fails we can  |
+redirect to any other. It is    |   Single Point of Failure
+called RESILIENT                |
+
+Network call between servers    |   Inter process Communications
+(Remote Procedure Calls or RPC) |   (faster)
+
+Data Inconsistency              |   Consistent
+
+Scales well as users increases  |   HardWare limit
