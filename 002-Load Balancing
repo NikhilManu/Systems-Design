@@ -1,0 +1,44 @@
+Load Balancing is process of taking request and evenly balancing the load on N servers. 
+
+Request ID(r) --> 0 to m-1
+
+    Hash(r1) --> AnyHash Function can be used ---> m1 (m1 can be mapped to any of the N server) --> m1 % N
+
+here we can expect all the servers to have unfirom load,
+for x request there will be x/N load --> 1/N loadfactor
+
+But problem comes if we need to add more servers,
+------------------------------
+In reality request ID is never random, so each time we hash a request ID the request goes to same server
+SO we could use this to our advantage by storing the information in local cache and not hitting the DB
+
+if we add more servers the N changes...the entire system changes and all the useful chache information we have will become useless after horizontal scaling.
+
+So here we use Consistent hashing
+------------------
+https://www.youtube.com/watch?v=zaRkONvyGr8 --> watch this for understanding clearly
+
+lets consider ring of O --> M - 1 nodes
+
+so after hashing the requestID each of them will take some position in the ring
+
+like wise we will also do like that for server 
+i.e... Hash(server Id) % M    so that each server will also take some position in the ring
+
+Whenever request comes to ring, we will move clockwise and the request will be completed by the server which is nearest to the position(clockwise) of request
+
+why is this the way?
+because since the hash(server Id) will be uniformly random, so the distance will be uniform so the load will also be uniform.
+
+But the problem here is also if we lose some number of server, the request may be skewed to one server which is terrible
+
+How do we solve this practically?
+We can use multiple hash functions which will take the server ID
+so if we have k hash functions, each server will have k points in the ring
+
+if we choose k value appropriately like log(M), we can almost entirely remove the chance of skewed server.
+so now if one server is down, we will remove k points and assign it to next clockwise server which is available
+
+
+    
+      
