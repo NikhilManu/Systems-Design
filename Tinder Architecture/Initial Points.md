@@ -22,7 +22,7 @@ Storing Images
             Content Delivery Network(CDN) allows fast access
 
 
-<img src="./images/Inital Image Storing.png" />
+![Inital Design](https://github.com/NikhilManu/Systems-Design/blob/main/Tinder%20Architecture/images/Inital%20Image%20Storing.png)
 
 Now the profile service is authenticating and sending back the response
 If there is new service which will come later on, that service will have to talk to profile service everytime, that logic
