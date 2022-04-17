@@ -1,4 +1,5 @@
  Tinder Architecture
+ ----------------
     Store Profiles (Images) - 5 Images per user
     Recommend matches - No of active users
     Note matches - 0.1% matches per person
