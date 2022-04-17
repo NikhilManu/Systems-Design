@@ -61,3 +61,28 @@ Direct Messaging For Chat
     Sessions is going to be storing connection information, ie.. userId and connectionId
 
 ![DM Design](https://github.com/NikhilManu/Systems-Design/blob/main/Tinder%20Architecture/images/DM%20Design.png)
+
+
+Matching Algorithm
+------------------------------
+
+    Here the problem is, we cant send messages to other person unless we are matched, so we will use some Matcher Service
+    which stores information of user --> user who are matched and sessions will take some information from matcher so as
+    to check whether user1 can send message to user2
+
+![Matcher Design](https://github.com/NikhilManu/Systems-Design/blob/main/Tinder%20Architecture/images/Matching%20Algorithm.png)
+
+
+Recommendation
+----------------------
+
+    We can create some algorithm based on age gender and location. We cannot sort data with multiple indexes as it will pick only any one index during query
+
+    So it is better to use 
+        NoSQL - Casandra
+        Sharding on RDBMS --> Horizontal Partitioning (Sharding db based on location is best I guess)
+            So what if any shard fails? We can use a master slave architecture to avoid single point of failure
+
+    So we will have Some Recommendation Service and some table which stores userId and current location (Since sharding on locations)
+
+![Matcher Design](https://github.com/NikhilManu/Systems-Design/blob/main/Tinder%20Architecture/images/Final%20Design.png)
