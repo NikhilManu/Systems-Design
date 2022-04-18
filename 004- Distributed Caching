@@ -1,0 +1,34 @@
+Two Scenarios where we have to use cache
+
+    - To save network Calls
+    - Avoid Recomputations
+    - Reduce DB load
+
+We cannot store too much data as search time will increase and also cost of hardware is very high
+
+Some Good Eviction Policies:
+    Sliding window
+    LRU
+
+if we have bad eviction policy, (most probably no result will be given for most of the calls)
+
+    - Extra call
+    - if we have small cache, Thrashing(inputing and outputing without using data) can happen
+    - data consistency
+
+
+Where to place the Cache?
+
+    => if we place close to server ie.. InMemory. Here amount of memory in server will be used up by cache. if no of results is small and 
+       need to save on network call, then it makes sense
+
+       faster and simple
+
+    => global cache, Redis..This is better than InMemory since if server crash is not a problem, and we can upgrade cache independently
+
+
+Write Through:
+    will write the cache and push the changes to db
+
+Write Back:
+    Hit the DB and makes sure cache will have null entry
