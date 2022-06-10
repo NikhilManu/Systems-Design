@@ -18,7 +18,7 @@ Problems Faced here
 
 Better way to handle this is Publisher Subscriber Model
 ---------------------------------------
-![Initial Architecture](https://github.com/NikhilManu/Systems-Design/blob/main/Images/Publisher%20Subscriber%20Model/Subscriber%20Architecture.jpg)
+![Subscriber Architecture](https://github.com/NikhilManu/Systems-Design/blob/main/Images/Publisher%20Subscriber%20Model/Subscriber%20Architecture.png)
 
 In this Model we can remove the Request/Response dependency between the Services and make it pass a message. Messages are Fire and Forget.
 
