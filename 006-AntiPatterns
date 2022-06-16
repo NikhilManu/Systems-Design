@@ -1,0 +1,36 @@
+Using DB as Message Queues
+
+    Lets say we have 3 servers S1, S2, S3
+
+    These servers talk to each other via the DB. So if any server is inserting any value to communicate to other server. 
+    The DB cannot talk to the server, so other server have to poll the DB at a specific interval.
+
+    Why is this AntiPattern?
+
+        If you are frequent polling (Read Operation), there will be a lot of load on the DB 
+
+        if you are polling at long interval, user experience will be bad and inefficient.
+
+        DB is usually optimized for either reading or writing. if we are performing both operations regularly then it will make issues such as deadlocks etc.
+
+        So if there is frequent communication between the servers, then data will be filled in the db.
+        So the only thing to do is either delete or update, which will be expensive and complicated since we may need to use scripts etc.
+
+        This is not scalable, since the db may not be able to handle the load
+
+    
+    So we should specialized Messge Queues when we have a large system.
+
+        Message Queues pushes the message to the server.
+
+        there are not too many read operations, writing is easy while reading is its job
+
+        scalability is easy since, we can add them
+
+        Drawback:
+
+            if the system is large no use. So db will be able to handle these kind of loads
+
+            if no lot of communication between servers, here less writing and more reading will be used more. So we can optimise db for read operation
+
+
